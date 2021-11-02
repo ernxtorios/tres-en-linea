@@ -171,6 +171,7 @@ public class Controller {
 	                	getTheView().setMensajeEmergente("¡Ganó " + getPartida().getJugadores().get(1).getNombre().toLowerCase() + ", ficha " + getPartida().getJugadores().get(1).getFicha() + "!\nJugada ganadora: fila " + (i + 1));
 	                	getPartida().setResultado("Ganador " + getPartida().getJugadores().get(1).getNombre());
 	                	getPartida().getJugadores().get(1).setPuntaje(getPartida().getJugadores().get(1).getPuntaje() + 1);
+	                	
 	                } else {
 	                	getTheView().setMensajeEmergente("¡Ganó " + getPartida().getJugadores().get(0).getNombre().toLowerCase() + ", ficha " + getPartida().getJugadores().get(0).getFicha() + "!\nJugada ganadora: fila " + (i + 1));
 	                	getPartida().setResultado("Ganador " + getPartida().getJugadores().get(0).getNombre());
@@ -301,6 +302,145 @@ public class Controller {
 				}
 			}
 		}
+	}
+	
+	// Obtener la cadena obtenida de la fila dada
+	public String getTheRow(int row) {
+		return getPartida().getTablero().getCasillas()[row][0].getValor() + getPartida().getTablero().getCasillas()[row][1].getValor() + getPartida().getTablero().getCasillas()[row][2].getValor(); 
+	}
+	
+	// Obtener la cadena obtenida de la columna dada
+	public String getTheColumn(int column) {
+		return getPartida().getTablero().getCasillas()[0][column].getValor() + getPartida().getTablero().getCasillas()[1][column].getValor() + getPartida().getTablero().getCasillas()[2][column].getValor(); 
+	}
+	
+	// Obtener la cadena obtenida de la diagonal principal
+	public String getTheMainDiagonal() {
+		return getPartida().getTablero().getCasillas()[0][0].getValor() + getPartida().getTablero().getCasillas()[1][1].getValor() + getPartida().getTablero().getCasillas()[2][2].getValor(); 
+	}
+	
+	// Obtener la cadena obtenida de la diagonal secundaria
+	public String getTheSecondaryDiagonal() {
+		return getPartida().getTablero().getCasillas()[0][2].getValor() + getPartida().getTablero().getCasillas()[1][1].getValor() + getPartida().getTablero().getCasillas()[2][0].getValor(); 
+	}
+	
+	// 
+	public String blockPlay() {
+		int fichas;
+		
+		String result = "";
+		
+		// Búsqueda de posibles jugadas en cada fila
+		for (int i = 0; i < getPartida().getTablero().getFilas(); i++) {
+			fichas = 0;
+			for (int j = 0; j < getTheRow(i).length(); j++) {
+				// Contamos el número de fichas del primer jugador por cada fila
+				if (getTheRow(i).substring(j, j + 1).equals(getPartida().getJugadores().get(0).getFicha())) {
+					fichas++;
+				}
+				// Verificamos las fichas vacías por cada fila
+				if (fichas == 2) {
+					for (int k = 0; k < getTheRow(i).length(); k++) {
+						if (getTheRow(i).substring(k, k + 1).equals(" ")) {
+							result = i + "_" + k;
+							break;
+						}
+					}
+				}
+				if (!result.equals("")) {
+					break;
+				}
+			}
+					
+			if (!result.equals("")) {
+				break;
+			}
+		}
+		
+		// Búsqueda de posibles jugadas en cada columna
+		for (int i = 0; i < getPartida().getTablero().getColumnas(); i++) {
+			fichas = 0;
+			for (int j = 0; j < getTheColumn(i).length(); j++) {
+				// Contamos el número de fichas del primer jugador por cada columna
+				if (getTheColumn(i).substring(j, j + 1).equals(getPartida().getJugadores().get(0).getFicha())) {
+					fichas++;
+				}
+				// Verificamos las fichas vacías por cada columna
+				if (fichas == 2) {
+					for (int k = 0; k < getTheColumn(i).length(); k++) {
+						if (getTheColumn(i).substring(k, k + 1).equals(" ")) {
+							result = k + "_" + i;
+							break;
+						}
+					}
+				}
+				if (!result.equals("")) {
+					break;
+				}
+			}
+			
+			if (!result.equals("")) {
+				break;
+			}
+		}
+		
+		// Búsqueda de posibles jugadas en la diagonal principal
+		fichas = 0;
+		for (int i = 0; i < getTheMainDiagonal().length(); i++) {
+			// Contamos el número de fichas del primer jugador en la diagonal principal
+			if (getTheMainDiagonal().substring(i, i + 1).equals(getPartida().getJugadores().get(0).getFicha())) {
+				fichas++;
+			}
+			// Verificamos las fichas vacías en la diagonal principal
+			if (fichas == 2) {
+				for (int j = 0; j < getTheMainDiagonal().length(); j++) {
+					if (getTheMainDiagonal().substring(j, j + 1).equals(" ")) {
+						switch (j) {
+							case 0:
+								result = "0_0";
+								break;
+							case 1: 
+								result = "1_1";
+								break;
+							case 2: 
+								result = "2_2";
+								break;
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+		// Búsqueda de posibles jugadas en la diagonal secundaria
+		fichas = 0;
+		for (int i = 0; i < getTheSecondaryDiagonal().length(); i++) {
+			// Contamos el número de fichas del primer jugador en la diagonal secundaria
+			if (getTheSecondaryDiagonal().substring(i, i + 1).equals(getPartida().getJugadores().get(0).getFicha())) {
+				fichas++;
+			}
+			// Verificamos las fichas vacías en la diagonal principal
+			if (fichas == 2) {
+				for (int j = 0; j < getTheSecondaryDiagonal().length(); j++) {
+					if (getTheSecondaryDiagonal().substring(j, j + 1).equals(" ")) {
+						switch (j) {
+							case 0:
+								result = "0_2";
+								break;
+							case 1: 
+								result = "1_1";
+								break;
+							case 2: 
+								result = "2_0";
+								break;
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+		return result;
 	}
 	
 	// Gestionamos eventos del menu de opciones mediante el uso de una clase interna 
@@ -513,14 +653,33 @@ public class Controller {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			String thePlay =  blockPlay();
 			if (!getPartida().isFinalizado()) {
-				m = (int) (Math.round(Math.random()*2));
+				if (thePlay.equals("")) {
+					m = (int) (Math.round(Math.random()*2));
+					n = (int) (Math.round(Math.random()*2));
+					
+					while (getPartida().getTablero().getCasillas()[m][n].getValor().equals(getPartida().getJugadores().get(0).getFicha()) || getPartida().getTablero().getCasillas()[m][n].getValor().equals(getPartida().getJugadores().get(1).getFicha())) {
+						m = (int) (Math.round(Math.random()*2));
+						n = (int) (Math.round(Math.random()*2));
+					}
+				} else {
+					m = Integer.parseInt(thePlay.substring(0, 1));
+					n = Integer.parseInt(thePlay.substring(2, 3));
+					
+					while (getPartida().getTablero().getCasillas()[m][n].getValor().equals(getPartida().getJugadores().get(0).getFicha()) || getPartida().getTablero().getCasillas()[m][n].getValor().equals(getPartida().getJugadores().get(1).getFicha())) {
+						m = (int) (Math.round(Math.random()*2));
+						n = (int) (Math.round(Math.random()*2));
+					}
+				}
+				
+				/*m = (int) (Math.round(Math.random()*2));
 				n = (int) (Math.round(Math.random()*2));
 				
 				while (getPartida().getTablero().getCasillas()[m][n].getValor().equals(getPartida().getJugadores().get(0).getFicha()) || getPartida().getTablero().getCasillas()[m][n].getValor().equals(getPartida().getJugadores().get(1).getFicha())) {
 					m = (int) (Math.round(Math.random()*2));
 					n = (int) (Math.round(Math.random()*2));
-	            }
+	            }*/
 				
 				getPartida().setTurno(getPartida().getTurno() + 1);
 				
@@ -560,7 +719,7 @@ public class Controller {
 				
 				// A partir del turno 5 evaluamos si hay tres elementos iguales en línea
 				if (getPartida().getTurno() >= 5) {
-	                if (tresEnLinea(getPartida().getTablero().getCasillas())) {
+					if (tresEnLinea(getPartida().getTablero().getCasillas())) {
 	                	pintarTresEnLinea();
 	                	deshabilitarCasillas();
 	                	JOptionPane.showMessageDialog(getTheView().getElTablero(), getTheView().getMensajeEmergente(), "Tres en línea", JOptionPane.INFORMATION_MESSAGE);

@@ -1,2 +1,2 @@
-# TresEnLinea
-Juego de tres en línea en Java. Programación orientada a objetos.
+# Tres en Línea
+Juego de tres en línea en Java, usando programación orientada a objetos.
