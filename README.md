@@ -63,3 +63,8 @@ El proyecto considera ciertas situaciones que delimitan las funcionalidades del 
 
 * **Configuración de todos los elementos del negocio:** Solo se considera la configuración de la ficha de cada jugador, que por defecto establece la ficha X para el jugador 1 y la ficha O para el jugador 2.
 Algunos elementos toman valores por defecto y no es posible su configuración, el nombre de los jugadores es "Jugador 1" y "Jugador 2".
+
+* **Configuración de los elementos de la interfaz gráfica:** Los colores de la interfaz gráfica son establecidos por defecto y no es posible su configuración personalizada.
+
+* **Generación de la jugada de la computadora:** La selección de la casilla en la que la computadora coloca la ficha correspondiente es generada aleatoriamente, tomando en consideración sólo si la casilla se encuentra vacía o no. Para la generación aleatoria de la casilla se hace uso de un temporizador establecido en 3 segundos, el cual es reiniciado luego de realizar la jugada.
+No se considera niveles de juego en las que la computadora podría predecir una jugada ganadora de su contrincante y evitarla.
