@@ -306,43 +306,114 @@ public class Controller {
 	
 	// Obtener la cadena obtenida de la fila dada
 	public String getTheRow(int row) {
-		return getPartida().getTablero().getCasillas()[row][0].getValor() + getPartida().getTablero().getCasillas()[row][1].getValor() + getPartida().getTablero().getCasillas()[row][2].getValor(); 
+		String [] column = new String[3];
+		
+		for (int c = 0; c < getPartida().getTablero().getFilas(); c++) {
+			column[c] = getPartida().getTablero().getCasillas()[row][c].getValor();
+			
+			if (column[c].equals(" ")) {
+				column[c] = getTheEmptyString(); 
+			}
+		}
+		
+		return column[0] + column[1] + column[2]; 
 	}
 	
 	// Obtener la cadena obtenida de la columna dada
 	public String getTheColumn(int column) {
-		return getPartida().getTablero().getCasillas()[0][column].getValor() + getPartida().getTablero().getCasillas()[1][column].getValor() + getPartida().getTablero().getCasillas()[2][column].getValor(); 
+		String [] row = new String[3];
+		
+		for (int r = 0; r < getPartida().getTablero().getColumnas(); r++) {
+			row[r] = getPartida().getTablero().getCasillas()[r][column].getValor();
+			
+			if (row[r].equals(" ")) {
+				row[r] = getTheEmptyString(); 
+			}
+		}
+		
+		return row[0] + row[1] + row[2]; 
 	}
 	
 	// Obtener la cadena obtenida de la diagonal principal
 	public String getTheMainDiagonal() {
-		return getPartida().getTablero().getCasillas()[0][0].getValor() + getPartida().getTablero().getCasillas()[1][1].getValor() + getPartida().getTablero().getCasillas()[2][2].getValor(); 
+		String [] mainDiagonal = new String[3];
+		
+		mainDiagonal[0] = getPartida().getTablero().getCasillas()[0][0].getValor();
+		mainDiagonal[1] = getPartida().getTablero().getCasillas()[1][1].getValor();
+		mainDiagonal[2] = getPartida().getTablero().getCasillas()[2][2].getValor();
+			
+		if (mainDiagonal[0].equals(" ")) {
+			mainDiagonal[0] = getTheEmptyString(); 
+		}
+		
+		if (mainDiagonal[1].equals(" ")) {
+			mainDiagonal[1] = getTheEmptyString(); 
+		}
+		
+		if (mainDiagonal[2].equals(" ")) {
+			mainDiagonal[2] = getTheEmptyString(); 
+		}
+		
+		return mainDiagonal[0] + mainDiagonal[1] + mainDiagonal[2]; 
 	}
 	
 	// Obtener la cadena obtenida de la diagonal secundaria
 	public String getTheSecondaryDiagonal() {
-		return getPartida().getTablero().getCasillas()[0][2].getValor() + getPartida().getTablero().getCasillas()[1][1].getValor() + getPartida().getTablero().getCasillas()[2][0].getValor(); 
+		String [] secondaryDiagonal = new String[3];
+		
+		secondaryDiagonal[0] = getPartida().getTablero().getCasillas()[0][2].getValor();
+		secondaryDiagonal[1] = getPartida().getTablero().getCasillas()[1][1].getValor();
+		secondaryDiagonal[2] = getPartida().getTablero().getCasillas()[2][0].getValor();
+			
+		if (secondaryDiagonal[0].equals(" ")) {
+			secondaryDiagonal[0] = getTheEmptyString();
+			} 
+		
+		if (secondaryDiagonal[1].equals(" ")) {
+			secondaryDiagonal[1] = getTheEmptyString();
+		}
+		
+		if (secondaryDiagonal[2].equals(" ")) {
+			secondaryDiagonal[2] = getTheEmptyString();
+		}
+		
+		return secondaryDiagonal[0] + secondaryDiagonal[1] + secondaryDiagonal[2]; 
+	}
+	
+	// Obtener la cadena vacía de acuerdo a la longitud de la ficha del jugador 1
+	public String getTheEmptyString() {
+		String theEmptyString = "";
+		
+		for (int b = 0; b < getPartida().getJugadores().get(0).getFicha().length(); b++) {
+			theEmptyString += " ";
+		}
+		
+		return theEmptyString;
 	}
 	
 	// 
 	public String blockPlay() {
 		int fichas;
 		
+		int iterator;
+		
 		String result = "";
 		
 		// Búsqueda de posibles jugadas en cada fila
 		for (int i = 0; i < getPartida().getTablero().getFilas(); i++) {
 			fichas = 0;
-			for (int j = 0; j < getTheRow(i).length(); j++) {
+			for (int j = 0; j < getTheRow(i).length(); j+=getPartida().getJugadores().get(0).getFicha().length()) {
 				// Contamos el número de fichas del primer jugador por cada fila
-				if (getTheRow(i).substring(j, j + 1).equals(getPartida().getJugadores().get(0).getFicha())) {
+				if (getTheRow(i).substring(j, j + getPartida().getJugadores().get(0).getFicha().length()).equals(getPartida().getJugadores().get(0).getFicha())) {
 					fichas++;
 				}
 				// Verificamos las fichas vacías por cada fila
 				if (fichas == 2) {
-					for (int k = 0; k < getTheRow(i).length(); k++) {
-						if (getTheRow(i).substring(k, k + 1).equals(" ")) {
-							result = i + "_" + k;
+					iterator = -1;
+					for (int k = 0; k < getTheRow(i).length(); k+=getPartida().getJugadores().get(0).getFicha().length()) {
+						iterator++;
+						if (getTheRow(i).substring(k, k + getPartida().getJugadores().get(0).getFicha().length()).equals(getTheEmptyString())) {
+							result = i + "_" + iterator;
 							break;
 						}
 					}
@@ -360,16 +431,18 @@ public class Controller {
 		// Búsqueda de posibles jugadas en cada columna
 		for (int i = 0; i < getPartida().getTablero().getColumnas(); i++) {
 			fichas = 0;
-			for (int j = 0; j < getTheColumn(i).length(); j++) {
+			for (int j = 0; j < getTheColumn(i).length(); j+=getPartida().getJugadores().get(0).getFicha().length()) {
 				// Contamos el número de fichas del primer jugador por cada columna
-				if (getTheColumn(i).substring(j, j + 1).equals(getPartida().getJugadores().get(0).getFicha())) {
+				if (getTheColumn(i).substring(j, j + getPartida().getJugadores().get(0).getFicha().length()).equals(getPartida().getJugadores().get(0).getFicha())) {
 					fichas++;
 				}
 				// Verificamos las fichas vacías por cada columna
 				if (fichas == 2) {
-					for (int k = 0; k < getTheColumn(i).length(); k++) {
-						if (getTheColumn(i).substring(k, k + 1).equals(" ")) {
-							result = k + "_" + i;
+					iterator = -1;
+					for (int k = 0; k < getTheColumn(i).length(); k+=getPartida().getJugadores().get(0).getFicha().length()) {
+						iterator++;
+						if (getTheColumn(i).substring(k, k + getPartida().getJugadores().get(0).getFicha().length()).equals(getTheEmptyString())) {
+							result = iterator + "_" + i;
 							break;
 						}
 					}
@@ -386,16 +459,18 @@ public class Controller {
 		
 		// Búsqueda de posibles jugadas en la diagonal principal
 		fichas = 0;
-		for (int i = 0; i < getTheMainDiagonal().length(); i++) {
+		for (int i = 0; i < getTheMainDiagonal().length(); i+=getPartida().getJugadores().get(0).getFicha().length()) {
 			// Contamos el número de fichas del primer jugador en la diagonal principal
-			if (getTheMainDiagonal().substring(i, i + 1).equals(getPartida().getJugadores().get(0).getFicha())) {
+			if (getTheMainDiagonal().substring(i, i + getPartida().getJugadores().get(0).getFicha().length()).equals(getPartida().getJugadores().get(0).getFicha())) {
 				fichas++;
 			}
 			// Verificamos las fichas vacías en la diagonal principal
 			if (fichas == 2) {
-				for (int j = 0; j < getTheMainDiagonal().length(); j++) {
-					if (getTheMainDiagonal().substring(j, j + 1).equals(" ")) {
-						switch (j) {
+				iterator = -1;
+				for (int j = 0; j < getTheMainDiagonal().length(); j+=getPartida().getJugadores().get(0).getFicha().length()) {
+					iterator++;
+					if (getTheMainDiagonal().substring(j, j + getPartida().getJugadores().get(0).getFicha().length()).equals(getTheEmptyString())) {
+						switch (iterator) {
 							case 0:
 								result = "0_0";
 								break;
@@ -410,20 +485,26 @@ public class Controller {
 					}
 				}
 			}
+			
+			if (!result.equals("")) {
+				break;
+			}
 		}
 		
 		// Búsqueda de posibles jugadas en la diagonal secundaria
 		fichas = 0;
-		for (int i = 0; i < getTheSecondaryDiagonal().length(); i++) {
+		for (int i = 0; i < getTheSecondaryDiagonal().length(); i+=getPartida().getJugadores().get(0).getFicha().length()) {
 			// Contamos el número de fichas del primer jugador en la diagonal secundaria
-			if (getTheSecondaryDiagonal().substring(i, i + 1).equals(getPartida().getJugadores().get(0).getFicha())) {
+			if (getTheSecondaryDiagonal().substring(i, i + getPartida().getJugadores().get(0).getFicha().length()).equals(getPartida().getJugadores().get(0).getFicha())) {
 				fichas++;
 			}
 			// Verificamos las fichas vacías en la diagonal principal
 			if (fichas == 2) {
-				for (int j = 0; j < getTheSecondaryDiagonal().length(); j++) {
-					if (getTheSecondaryDiagonal().substring(j, j + 1).equals(" ")) {
-						switch (j) {
+				iterator = -1;
+				for (int j = 0; j < getTheSecondaryDiagonal().length(); j+=getPartida().getJugadores().get(0).getFicha().length()) {
+					iterator++;
+					if (getTheSecondaryDiagonal().substring(j, j + getPartida().getJugadores().get(0).getFicha().length()).equals(getTheEmptyString())) {
+						switch (iterator) {
 							case 0:
 								result = "0_2";
 								break;
@@ -437,6 +518,10 @@ public class Controller {
 						break;
 					}
 				}
+			}
+			
+			if (!result.equals("")) {
+				break;
 			}
 		}
 		
@@ -672,14 +757,6 @@ public class Controller {
 						n = (int) (Math.round(Math.random()*2));
 					}
 				}
-				
-				/*m = (int) (Math.round(Math.random()*2));
-				n = (int) (Math.round(Math.random()*2));
-				
-				while (getPartida().getTablero().getCasillas()[m][n].getValor().equals(getPartida().getJugadores().get(0).getFicha()) || getPartida().getTablero().getCasillas()[m][n].getValor().equals(getPartida().getJugadores().get(1).getFicha())) {
-					m = (int) (Math.round(Math.random()*2));
-					n = (int) (Math.round(Math.random()*2));
-	            }*/
 				
 				getPartida().setTurno(getPartida().getTurno() + 1);
 				
