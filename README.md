@@ -30,17 +30,17 @@ Un juego está compuesto por una o más partidas, por cada partida se debe conoc
 
 #### Las clases
 De la descripción del problema se identifican los elementos relevantes del entorno, teniendo las siguientes clases:
-\* **Persona:** Representa a la persona que juega "tres en línea"; eventualmente representa a la computadora.
+* **Persona:** Representa a la persona que juega "tres en línea"; eventualmente representa a la computadora.
 
-\* **Jugador:** Cada jugador es una persona. Tiene como características relevantes a la ficha con la que juega y el puntaje acumulado en el desarrollo del juego.
+* **Jugador:** Cada jugador es una persona. Tiene como características relevantes a la ficha con la que juega y el puntaje acumulado en el desarrollo del juego.
 
-\* **Casilla:** Representa cada casillero del tablero del juego "tres en línea". Va a contener como valor la ficha establecida por cada jugador.
+* **Casilla:** Representa cada casillero del tablero del juego "tres en línea". Va a contener como valor la ficha establecida por cada jugador.
 
-\* **Tablero:** Representa el tablero del juego. Está compuesto por tres filas y tres columnas de casillas.
+* **Tablero:** Representa el tablero del juego. Está compuesto por tres filas y tres columnas de casillas.
 
-\* **Juego:** Representa el juego "tres en línea". Contiene la información de las partidas que lo forman.
+* **Juego:** Representa el juego "tres en línea". Contiene la información de las partidas que lo forman.
 
-\* **Partida:** Representa a cada partida del juego, contiene la información de los turnos, tipo, resultado, tiempo, entre otros.
+* **Partida:** Representa a cada partida del juego, contiene la información de los turnos, tipo, resultado, tiempo, entre otros.
 
 #### Relaciones entre clases
 \* **Herencia:** Un jugador es una persona. Consideramos a la computadora como un jugador que representa a una persona.
