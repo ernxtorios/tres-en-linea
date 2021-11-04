@@ -28,7 +28,7 @@ El software debe contar con la capacidad de determinar la jugada ganadora (fila,
 
 Un juego está compuesto por una o más partidas, por cada partida se debe conocer el resultado y la duración; además de los puntajes acumulados de cada jugador.
 
-#### Las clases
+#### \* Las clases
 De la descripción del problema se identifican los elementos relevantes del entorno, teniendo las siguientes clases:
 \* **Persona:** Representa a la persona que juega "tres en línea"; eventualmente representa a la computadora.
 
@@ -42,7 +42,7 @@ De la descripción del problema se identifican los elementos relevantes del ento
 
 \* **Partida:** Representa a cada partida del juego, contiene la información de los turnos, tipo, resultado, tiempo, entre otros.
 
-#### Relaciones entre clases
+#### \* Relaciones entre clases
 \* **Herencia:** Un jugador es una persona. Consideramos a la computadora como un jugador que representa a una persona.
 
 \* **Composición:** La composición es una relación que se utiliza cuando una clase se compone de partes de otra clase.
@@ -53,5 +53,5 @@ Una *partida* es parte de un *juego* y un juego tiene una o muchas partidas.
 Un *jugador* juega una *partida* y una partida es jugada por dos jugadores.
 Una *partida* tiene un *tablero* y cada tablero pertenece a una partida.
 
-#### Diagrama de clases
+#### \* Diagrama de clases
 ![Diagrama de Clases](/images/TresEnLinea.jpg)
