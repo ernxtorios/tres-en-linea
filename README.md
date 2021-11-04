@@ -15,7 +15,7 @@ Estas reglas del juego se han plasmado en el proyecto desarrollado utilizando lo
 
 El entorno gráfico del producto resultante del proyecto es el entorno de escritorio.
 
-###  \* El problema
+###  El problema
 Se desea implementar un software que permita jugar "tres en línea" en dos escenarios: dos jugadores (humano versus humano) y un jugador teniendo contrincante a la computadora (humano versus computadora).
 
 Como es sabido, "tres en línea" se juega en una cuadrícula o tablero formado por el trazo de dos líneas horizontales y dos líneas verticales. Cada jugador tiene una ficha (X para el primer jugador y O para el segundo jugador), y en su turno debe poner una en un casillero del tablero, intentando conseguir tres fichas iguales seguidas en una línea vertical, horizontal o diagonal.
@@ -28,7 +28,7 @@ El software debe contar con la capacidad de determinar la jugada ganadora (fila,
 
 Un juego está compuesto por una o más partidas, por cada partida se debe conocer el resultado y la duración; además de los puntajes acumulados de cada jugador.
 
-#### \* Las clases
+#### Las clases
 De la descripción del problema se identifican los elementos relevantes del entorno, teniendo las siguientes clases:
 \* **Persona:** Representa a la persona que juega "tres en línea"; eventualmente representa a la computadora.
 
@@ -42,7 +42,7 @@ De la descripción del problema se identifican los elementos relevantes del ento
 
 \* **Partida:** Representa a cada partida del juego, contiene la información de los turnos, tipo, resultado, tiempo, entre otros.
 
-#### \* Relaciones entre clases
+#### Relaciones entre clases
 \* **Herencia:** Un jugador es una persona. Consideramos a la computadora como un jugador que representa a una persona.
 
 \* **Composición:** La composición es una relación que se utiliza cuando una clase se compone de partes de otra clase.
@@ -53,5 +53,12 @@ Una *partida* es parte de un *juego* y un juego tiene una o muchas partidas.
 Un *jugador* juega una *partida* y una partida es jugada por dos jugadores.
 Una *partida* tiene un *tablero* y cada tablero pertenece a una partida.
 
-#### \* Diagrama de clases
+#### Diagrama de clases
 ![Diagrama de Clases](/images/TresEnLinea.jpg)
+
+## 3. Alcance del proyecto
+El proyecto considera ciertas situaciones que delimitan las funcionalidades del software resultante, las cuales se listan a continuación:
+\* **Persistencia de datos:** El software sólo es capaz de brindar información de las partidas que se juegan durante la ejecución del software; es decir no contempla el almacenamiento o persistencia de datos en algún tipo de fuente de almacenamiento.
+
+\* **Configuración de todos los elementos del negocio:** Solo se considera la configuración de la ficha de cada jugador, que por defecto establece la ficha X para el jugador 1 y la ficha O para el jugador 2.
+Algunos elementos toman valores por defecto y no es posible su configuración, el nombre de los jugadores es "Jugador 1" y "Jugador 2".
