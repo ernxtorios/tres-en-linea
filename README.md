@@ -43,13 +43,13 @@ De la descripción del problema se identifican los elementos relevantes del ento
 * **Partida:** Representa a cada partida del juego, contiene la información de los turnos, tipo, resultado, tiempo, entre otros.
 
 #### Relaciones entre clases
-\* **Herencia:** Un jugador es una persona. Consideramos a la computadora como un jugador que representa a una persona.
+* **Herencia:** Un jugador es una persona. Consideramos a la computadora como un jugador que representa a una persona.
 
-\* **Composición:** La composición es una relación que se utiliza cuando una clase se compone de partes de otra clase.
+* **Composición:** La composición es una relación que se utiliza cuando una clase se compone de partes de otra clase.
 Una *casilla* es parte de un *tablero* y un tablero tiene uno o muchas casillas.
 Una *partida* es parte de un *juego* y un juego tiene una o muchas partidas.
 
-\* **Asociaciones:** Las asociaciones representan relaciones entre clases.
+* **Asociaciones:** Las asociaciones representan relaciones entre clases.
 Un *jugador* juega una *partida* y una partida es jugada por dos jugadores.
 Una *partida* tiene un *tablero* y cada tablero pertenece a una partida.
 
@@ -58,7 +58,8 @@ Una *partida* tiene un *tablero* y cada tablero pertenece a una partida.
 
 ## 3. Alcance del proyecto
 El proyecto considera ciertas situaciones que delimitan las funcionalidades del software resultante, las cuales se listan a continuación:
-\* **Persistencia de datos:** El software sólo es capaz de brindar información de las partidas que se juegan durante la ejecución del software; es decir no contempla el almacenamiento o persistencia de datos en algún tipo de fuente de almacenamiento.
 
-\* **Configuración de todos los elementos del negocio:** Solo se considera la configuración de la ficha de cada jugador, que por defecto establece la ficha X para el jugador 1 y la ficha O para el jugador 2.
+* **Persistencia de datos:** El software sólo es capaz de brindar información de las partidas que se juegan durante la ejecución del software; es decir no contempla el almacenamiento o persistencia de datos en algún tipo de fuente de almacenamiento.
+
+* **Configuración de todos los elementos del negocio:** Solo se considera la configuración de la ficha de cada jugador, que por defecto establece la ficha X para el jugador 1 y la ficha O para el jugador 2.
 Algunos elementos toman valores por defecto y no es posible su configuración, el nombre de los jugadores es "Jugador 1" y "Jugador 2".
