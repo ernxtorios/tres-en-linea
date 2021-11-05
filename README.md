@@ -54,7 +54,7 @@ Un *jugador* juega una *partida* y una partida es jugada por dos jugadores.
 Una *partida* tiene un *tablero* y cada tablero pertenece a una partida.
 
 #### Diagrama de clases
-![Diagrama de Clases](https://drive.google.com/file/d/1HDA2ebwaUbejf9dfbRJwKqnpkAOugtxi/view?usp=sharing)
+![Diagrama de Clases](/images/TresEnLinea.jpg)
 
 ## 3. Alcance del proyecto
 El proyecto considera ciertas situaciones que delimitan las funcionalidades del software resultante, las cuales se listan a continuación:
