@@ -623,11 +623,11 @@ public class Controller {
 					JOptionPane.showMessageDialog(getTheView().getElTablero(), getTheView().getMensajeEmergente(), "Tres en línea", JOptionPane.INFORMATION_MESSAGE);
 					System.exit(0);
 				} else if (e.getActionCommand().equals("Versión")) {
-					getTheView().setMensajeEmergente("Tres en Línea\nVersión 0.1.1"); 
+					getTheView().setMensajeEmergente("Tres en Línea\nVersión 0.2.0"); 
 					
 					JOptionPane.showMessageDialog(getTheView().getElTablero(), getTheView().getMensajeEmergente(), "Tres en línea", JOptionPane.INFORMATION_MESSAGE);
 				} else if (e.getActionCommand().equals("Acerca de")) {
-					getTheView().setMensajeEmergente("Ernesto Segundo\nTwitter: @CapitanApiacho\nGitHub: @ErnestoSegundo"); 
+					getTheView().setMensajeEmergente("Ernesto Segundo\nGitHub: @ErnestoSegundo\nTwitter: @CapitanApiacho"); 
 					
 					JOptionPane.showMessageDialog(getTheView().getElTablero(), getTheView().getMensajeEmergente(), "Tres en línea", JOptionPane.INFORMATION_MESSAGE);
 				}
