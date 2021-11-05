@@ -66,5 +66,8 @@ Algunos elementos toman valores por defecto y no es posible su configuración, e
 
 * **Configuración de los elementos de la interfaz gráfica:** Los colores de la interfaz gráfica son establecidos por defecto y no es posible su configuración personalizada.
 
-* **Generación de la jugada de la computadora:** La selección de la casilla en la que la computadora coloca la ficha correspondiente es generada aleatoriamente, tomando en consideración sólo si la casilla se encuentra vacía o no. Para la generación aleatoria de la casilla se hace uso de un temporizador establecido en 3 segundos, el cual es reiniciado luego de realizar la jugada.
+* **Generación de la jugada de la computadora:** La selección de la casilla en la que la computadora coloca la ficha correspondiente es generada aleatoriamente, tomando en consideración ~sólo si la casilla se encuentra vacía o no~. Para la generación aleatoria de la casilla se hace uso de un temporizador establecido en 3 segundos, el cual es reiniciado luego de realizar la jugada.
 No se considera niveles de juego en las que la computadora podría predecir una jugada ganadora de su contrincante y evitarla.
+
+**Actualización *octubre 2021***
+La generación de la jugada de la computadora ya no se realiza sólo si la casilla se encuentra vacía o no, sino que además de tiene en cuenta si el contrincante está a punto de ganar el juego y se bloquea la posible jugada.
